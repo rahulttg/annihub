@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101014"><title>Admin — Otaku Arcade</title><link rel="stylesheet" href="/styles.css"></head>
+<body class="admin-page">
+  <main class="admin-shell">
+    <div id="login-view" class="admin-panel login-card">
+      <a class="brand" href="/"><span class="brand-mark">O</span><span>OTAKU<span class="brand-accent">ARCADE</span></span></a>
+      <p class="eyebrow">PRIVATE AREA</p><h1>Admin sign in.</h1><p>Manage anime metadata and authorized episode video sources.</p>
+      <form id="login-form" class="login-form">
+        <div class="field"><label for="username">Username</label><input id="username" name="username" autocomplete="username" required></div>
+        <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required></div>
+        <button class="btn-small" type="submit">Sign in →</button><p id="login-message" class="notice error"></p>
+      </form>
+      <p class="small-muted">Set ADMIN_USERNAME and ADMIN_PASSWORD in your local .env file before starting.</p>
+    </div>
+
+    <div id="dashboard-view" class="hidden">
+      <header class="admin-header"><div><a class="brand" href="/"><span class="brand-mark">O</span><span>OTAKU<span class="brand-accent">ARCADE</span></span></a><h1>Content studio.</h1><p class="muted">Manage your catalog locally.</p></div><button id="logout-button" class="btn-small btn-danger">Sign out</button></header>
+      <section class="admin-panel"><h2 id="anime-form-title">Add anime title</h2>
+        <form id="anime-form">
+          <input type="hidden" id="anime-id">
+          <div class="form-grid">
+            <div class="field"><label for="title">Anime title *</label><input id="title" required maxlength="180"></div>
+            <div class="field"><label for="genres">Genres (comma-separated)</label><input id="genres" placeholder="Action, Fantasy, Drama"></div>
+            <div class="field"><label for="year">Release year</label><input id="year" type="number" min="1900" max="2100" placeholder="2026"></div>
+            <div class="field"><label for="status">Status</label><select id="status"><option>Ongoing</option><option>Completed</option><option>Upcoming</option></select></div>
+            <div class="field"><label for="rating">Display rating (optional)</label><input id="rating" placeholder="NR or your sourced rating"></div>
+            <div class="field"><label for="poster-url">Poster image URL (optional)</label><input id="poster-url" type="url" placeholder="https://example.com/poster.jpg"></div>
+            <div class="field full"><label for="banner-url">Banner image URL (optional)</label><input id="banner-url" type="url" placeholder="https://example.com/banner.jpg"></div>
+            <div class="field full"><label for="synopsis">Synopsis</label><textarea id="synopsis" placeholder="Write a short original synopsis..."></textarea></div>
+            <label class="check-field field full"><input id="featured" type="checkbox"> Feature this title on the catalog</label>
+          </div>
+          <div class="admin-actions"><button class="btn-small" type="submit">Save anime</button><button id="reset-anime" class="btn-small" type="button" style="background:#34313f;color:white">Clear form</button></div><p id="anime-message" class="notice"></p>
+        </form>
+      </section>
+
+      <section class="admin-panel"><h2>Upload a licensed video (local development)</h2>
+        <p class="small-muted">Upload an MP4/WebM file you own or are licensed to stream. Files are stored on this Mac in data/media. Local uploads are not automatically transferred to a public hosting provider.</p>
+        <form id="upload-form">
+          <div class="form-grid">
+            <div class="field full"><label for="video-file">Video file (max 1 GB)</label><input id="video-file" name="video" type="file" accept=".mp4,.webm,.ogv,.ogg,.m4v,video/mp4,video/webm" required></div>
+          </div>
+          <div class="admin-actions"><button class="btn-small" type="submit">Upload video</button></div>
+          <p id="upload-message" class="notice"></p>
+        </form>
+      </section>
+
+      <section class="admin-panel"><h2>Add an episode</h2><form id="episode-form">
+        <div class="form-grid">
+          <div class="field full"><label for="episode-anime">Anime title</label><select id="episode-anime" required></select></div>
+          <div class="field"><label for="episode-number">Episode number *</label><input id="episode-number" type="number" min="1" required value="1"></div>
+          <div class="field"><label for="episode-title">Episode title</label><input id="episode-title" placeholder="The beginning"></div>
+          <div class="field full"><label for="video-url">Video URL * (paste upload result or licensed direct URL)</label><input id="video-url" type="text" required placeholder="/media/your-uploaded-video.mp4"></div>
+          <div class="field full"><label for="subtitle-url">Subtitle URL (.vtt, optional)</label><input id="subtitle-url" type="url" placeholder="https://your-host/subtitles-en.vtt"></div>
+        </div>
+        <div class="admin-actions"><button class="btn-small" type="submit">Add episode</button></div><p id="episode-message" class="notice"></p>
+      </form></section>
+
+      <section class="admin-panel"><div class="admin-subheading"><h2>Catalog</h2><button id="refresh-button" class="btn-small" type="button" style="background:#34313f;color:white">Refresh</button></div>
+        <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Title</th><th>Year / status</th><th>Episodes</th><th>Actions</th></tr></thead><tbody id="anime-table"></tbody></table></div>
+      </section>
+      <section class="admin-panel"><h2>Episode manager</h2><p class="small-muted">Choose an anime to view its episodes and remove incorrect entries.</p><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Anime</th><th>Episode</th><th>Source URL</th><th>Action</th></tr></thead><tbody id="episode-table"></tbody></table></div></section>
+    </div>
+  </main>
+  <script src="/admin.js" defer></script>
+</body>
+</html>

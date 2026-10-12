@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101014">
+  <meta name="description" content="Discover your next anime adventure on Otaku Arcade.">
+  <title>Otaku Arcade — Anime discovery</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Otaku Arcade home"><span class="brand-mark">O</span><span>OTAKU<span class="brand-accent">ARCADE</span></span></a>
+    <nav class="nav-links"><a class="active" href="/">Home</a><a href="#catalog">Anime</a><a href="#genres">Genres</a></nav>
+    <form id="search-form" class="search-form"><input id="search-input" type="search" placeholder="Search anime..." aria-label="Search anime"><button aria-label="Search">⌕</button></form>
+    <a class="admin-link" href="/admin">Admin <span>↗</span></a>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span class="live-dot"></span> YOUR NEXT ADVENTURE STARTS HERE</p>
+        <h1>Find your next<br><span>favorite anime.</span></h1>
+        <p class="hero-copy">Explore new worlds, unforgettable characters, and stories worth staying up for.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#catalog">Explore anime <span>→</span></a><a class="btn btn-ghost" href="#latest">Latest episodes</a></div>
+        <div class="hero-stats"><div><strong id="anime-count">—</strong><span>Titles to explore</span></div><i></i><div><strong>∞</strong><span>Worlds to discover</span></div></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-sigil">夜</div><div class="hero-card hero-card-back">アニメ</div><div class="hero-card hero-card-front"><span>OTAKU ARCADE</span><strong>STORIES<br>WITHOUT<br>LIMITS.</strong><small>DISCOVER SOMETHING NEW</small></div></div>
+    </section>
+
+    <section class="ticker"><span>✦</span> DISCOVER <b>•</b> WATCH <b>•</b> REPEAT <b>•</b> DISCOVER <b>•</b> WATCH <b>•</b> REPEAT <span>✦</span></section>
+
+    <section id="catalog" class="section">
+      <div class="section-heading"><div><p class="eyebrow">HANDPICKED FOR YOU</p><h2>Explore the <span>catalog</span></h2></div><div class="section-controls"><select id="sort-select" aria-label="Sort titles"><option value="featured">Featured first</option><option value="title">Title A–Z</option><option value="year">Newest year</option></select></div></div>
+      <div id="genres" class="genre-row">
+        <button class="genre-chip selected" data-genre="">All anime</button>
+        <button class="genre-chip" data-genre="Action">Action</button><button class="genre-chip" data-genre="Adventure">Adventure</button><button class="genre-chip" data-genre="Comedy">Comedy</button><button class="genre-chip" data-genre="Drama">Drama</button><button class="genre-chip" data-genre="Fantasy">Fantasy</button><button class="genre-chip" data-genre="Mystery">Mystery</button><button class="genre-chip" data-genre="Romance">Romance</button><button class="genre-chip" data-genre="Sci-Fi">Sci-Fi</button>
+      </div>
+      <div id="anime-grid" class="anime-grid"><div class="loading">Loading anime…</div></div>
+      <p id="empty-state" class="empty-state hidden">No titles match your search. Try another title or genre.</p>
+    </section>
+
+    <section id="latest" class="section latest-section">
+      <div class="section-heading"><div><p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>Recently <span>added</span></h2></div><p class="muted">Fresh titles and episode samples</p></div>
+      <div id="latest-grid" class="latest-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer"><a class="brand" href="/"><span class="brand-mark">O</span><span>OTAKU<span class="brand-accent">ARCADE</span></span></a><p>An original anime discovery demo. Stream only content you own or are licensed to show.</p><span>© <span id="year-now"></span> Otaku Arcade</span></footer>
+
+  <div id="modal-root"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
